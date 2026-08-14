@@ -1,0 +1,41 @@
+[gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://cuyxf3ti57f31"]
+
+[ext_resource type="Texture2D" uid="uid://cmr01a3i8pl0h" path="res://Assets/textures/floor1.png" id="1_tikia"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3nea"]
+resource_name = "Wooden Floor (1)"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_tikia")
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0xa1n"]
+_surfaces = [{
+"aabb": AABB(-0.9999991, -0.04, -1.0000001, 1.9999983, 0.04, 2.0000005),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgAEAAAABQADAAEAAQAAAAUAAwAGAAIABAACAAYABgADAAUAAAAEAAcABgAHAAQABwAFAAAABQAHAAYA"),
+"name": "Wooden Floor (1)",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("8v9/PwAAAAABAIC/8v9/PwAAAAACAIA/8f9/vwAAAAACAIA/8v9/PwrXI70CAIA/8f9/vwAAAAABAIC/8v9/PwrXI70BAIC/8f9/vwrXI70CAIA/8f9/vwrXI70BAIC/")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "Cube_207"
+_surfaces = [{
+"aabb": AABB(-0.9999991, -0.04, -1.0000001, 1.9999983, 0.04, 2.0000005),
+"attribute_data": PackedByteArray("AACAPwAAgDoAAIA/AACAPwAAAAAAAIA/AAAAAAAAgDrs/38/AACAPwAAAAAAAIA/AAAAAAAAAADs/38/AAAAAH6VnT4AVO48fpWdPuDvej1+lZ0+4O96PX6VnT4AVO48wxyNPuDvej3DHI0+AFTuPMMcjT4AVO48wxyNPuDvej3DHI0+AFTuPH6VnT4AVO48fpWdPgBU7jzDHI0+AFTuPH6VnT7g73o9wxyNPuDvej3DHI0+4O96PX6VnT7g73o9"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
+"material": SubResource("StandardMaterial3D_x3nea"),
+"name": "Wooden Floor (1)",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("8v9/PwAAAAABAIC/8v9/PwAAAAACAIA/8f9/vwAAAAACAIA/8f9/vwAAAAABAIC/8v9/PwrXI70BAIC/8f9/vwrXI70BAIC/8f9/vwrXI70CAIA/8v9/PwrXI70CAIA/8v9/PwrXI70BAIC/8v9/PwrXI70CAIA/8v9/PwAAAAACAIA/8v9/PwAAAAABAIC/8f9/vwrXI70CAIA/8f9/vwrXI70BAIC/8f9/vwAAAAABAIC/8f9/vwAAAAACAIA/8f9/vwrXI70BAIC/8v9/PwrXI70BAIC/8v9/PwAAAAABAIC/8f9/vwAAAAABAIC/8v9/PwrXI70CAIA/8f9/vwrXI70CAIA/8f9/vwAAAAACAIA/8v9/PwAAAAACAIA//3///////7//f///////v/9///////+//3///////7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v////3////+/////f////7////9/////v////3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7//////////v/////////+//////////7//////////v/9//3////8//3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0xa1n")
