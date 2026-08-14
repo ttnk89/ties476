@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bims3bhicv5cq"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_kouif"]
+
+[node name="GlobalMicInput" type="AudioStreamPlayer" unique_id=1459406899]
+stream = SubResource("AudioStreamMicrophone_kouif")
+autoplay = true
+bus = &"Record"

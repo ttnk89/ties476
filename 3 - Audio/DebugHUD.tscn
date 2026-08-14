@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dsw17t7qcnmw4"]
+
+[ext_resource type="Script" uid="uid://ctokojyrqbbb5" path="res://debug_hud.gd" id="1_cqkms"]
+
+[node name="DebugHud" type="CanvasLayer" unique_id=803440922]
+process_mode = 3
+script = ExtResource("1_cqkms")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=849977148]
+
+[node name="VolRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1448049428]
+visible = false
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/VolRow" unique_id=1893064691]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VolRow" unique_id=1374411926]
+layout_mode = 2
+
+[node name="Treble" type="HBoxContainer" parent="VBoxContainer" unique_id=1239571347]
+visible = false
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/Treble" unique_id=460939546]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+max_value = 10.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Treble" unique_id=441455727]
+layout_mode = 2
+
+[node name="Bass" type="HBoxContainer" parent="VBoxContainer" unique_id=604040717]
+visible = false
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/Bass" unique_id=1895716762]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="VBoxContainer/Bass" unique_id=734216315]
+layout_mode = 2
+
+[node name="Mid" type="HBoxContainer" parent="VBoxContainer" unique_id=1873636718]
+visible = false
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/Mid" unique_id=1873368863]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+max_value = 22050.0
+step = 1.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Mid" unique_id=1380473737]
+layout_mode = 2
+
+[node name="CalibrationRow" type="HBoxContainer" parent="VBoxContainer" unique_id=178278225]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CalibrationRow" unique_id=1650793025]
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="VBoxContainer" unique_id=4667440]
+layout_mode = 2
+text = "Select Input Device by clicking & Hover over the devices with mouse to preview input level"
+
+[node name="DeviceListContainer" type="CenterContainer" parent="VBoxContainer" unique_id=889811174]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="DeviceList" type="GridContainer" parent="VBoxContainer/DeviceListContainer" unique_id=1659923333]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+size_flags_horizontal = 2

@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bmmpsm1gmdyt7"]
+
+[ext_resource type="Script" uid="uid://bsetr0uuha62q" path="res://black_hole.gd" id="1_gf172"]
+
+[sub_resource type="CircleShape2D" id="CorePhysicalShape"]
+radius = 3.0
+
+[sub_resource type="Shader" id="Shader_036b0"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear;
+uniform float event_horizon_size : hint_range(0.0, 0.4) = 0.15;
+uniform float lens_strength : hint_range(0.0, 1.0) = 0.25;
+uniform float edge_feather : hint_range(0.0, 0.2) = 0.12;
+uniform float core_feather : hint_range(0.0, 0.1) = 0.03;
+uniform float feather_start : hint_range(0.0, 0.4) = 0.4;
+uniform float max_radius : hint_range(0.0, 1.0) = 0.48;
+void fragment() {
+    vec2 dir = UV - vec2(0.5);
+    float dist = length(dir);
+    
+    
+
+    if (dist < max_radius) {
+        float alpha_mask = smoothstep(max_radius, feather_start, dist);
+        
+        float denominator = max(dist - event_horizon_size, 0.001) + 0.02;
+        float warp_force = (lens_strength * event_horizon_size) / denominator;
+        vec2 offset = normalize(dir) * warp_force * 0.1;
+        
+        float edge_fade = smoothstep(max_radius, event_horizon_size, dist);
+        offset *= edge_fade;
+        
+        vec4 sampled_screen = texture(screen_texture, SCREEN_UV + offset);
+        
+        float core_mask = smoothstep(event_horizon_size - core_feather, event_horizon_size, dist);
+        vec3 final_color = mix(vec3(0.0), sampled_screen.rgb, core_mask);
+        
+        COLOR = vec4(final_color, alpha_mask);
+    } else {
+        discard;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gf172"]
+shader = SubResource("Shader_036b0")
+shader_parameter/event_horizon_size = 0.050000002375
+shader_parameter/lens_strength = 0.50000002375
+shader_parameter/edge_feather = 0.12
+shader_parameter/core_feather = 0.03
+
+[sub_resource type="CircleShape2D" id="GravityAreaShape"]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gf172"]
+radius = 40.0
+
+[node name="EnemyBlackHole" type="RigidBody2D" unique_id=2006249537 groups=["black_hole"]]
+collision_layer = 2
+freeze = true
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_gf172")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708975534]
+shape = SubResource("CorePhysicalShape")
+
+[node name="BlackHoleLens" type="ColorRect" parent="." unique_id=1816593542]
+z_index = 2
+material = SubResource("ShaderMaterial_gf172")
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=2133757404]
+z_index = 1
+copy_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1021932200]
+
+[node name="GravityWell" type="Area2D" parent="." unique_id=1656357652]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityWell" unique_id=503603715]
+shape = SubResource("GravityAreaShape")
+
+[node name="KillZone" type="Area2D" parent="." unique_id=1043833538]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=419429552]
+shape = SubResource("CircleShape2D_gf172")

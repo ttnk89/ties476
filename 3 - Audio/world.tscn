@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b2r5g68bb17lj"]
+
+[ext_resource type="Script" uid="uid://cgyrayvk5wq81" path="res://Player.gd" id="1_fj7yv"]
+[ext_resource type="Script" uid="uid://co251j646nxx4" path="res://background.gd" id="2_fj7yv"]
+[ext_resource type="Shader" uid="uid://bjdabmpdd3xao" path="res://Lens.gdshader" id="3_pkg7o"]
+[ext_resource type="Script" uid="uid://bh5qoumolew6e" path="res://object_spawner.gd" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://5qqn1cwby65j" path="res://gas_cloud.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://bmmpsm1gmdyt7" path="res://BlackHole.tscn" id="6_dwbse"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkg7o"]
+shader = ExtResource("3_pkg7o")
+shader_parameter/event_horizon_size = 0.150000007125
+shader_parameter/lens_strength = 0.50000002375
+shader_parameter/animation_speed = 3.0
+
+[node name="World" type="Node2D" unique_id=2103298238]
+
+[node name="Player" type="RigidBody2D" parent="." unique_id=1986119304 groups=["player"]]
+unique_name_in_owner = true
+position = Vector2(2000, 2000)
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_fj7yv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player" unique_id=1092164902]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1087124543]
+
+[node name="BlackHoleLens" type="ColorRect" parent="Player" unique_id=1088022360]
+z_index = 1
+material = SubResource("ShaderMaterial_pkg7o")
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Player" unique_id=1000918750]
+z_index = -2
+copy_mode = 2
+
+[node name="Background" type="Node2D" parent="." unique_id=456041628]
+script = ExtResource("2_fj7yv")
+star_count = 4000
+
+[node name="ObjectSpawner" type="Node2D" parent="." unique_id=2000376071]
+script = ExtResource("4_aqk2v")
+prey_scene = ExtResource("5_036b0")
+black_hole_scene = ExtResource("6_dwbse")
+max_spawn_dist = 5000.0

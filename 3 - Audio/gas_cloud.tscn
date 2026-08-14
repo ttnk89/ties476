@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://5qqn1cwby65j"]
+
+[ext_resource type="Script" uid="uid://icftxs8klis7" path="res://gas_cloud.gd" id="1_lgkqo"]
+
+[sub_resource type="Gradient" id="Gradient_lgkqo"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ovrae"]
+gradient = SubResource("Gradient_lgkqo")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.4)
+
+[sub_resource type="Curve" id="Curve_lgkqo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ovrae"]
+curve = SubResource("Curve_lgkqo")
+
+[sub_resource type="Curve" id="Curve_lcwvc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ef7g5"]
+curve = SubResource("Curve_lcwvc")
+
+[sub_resource type="Curve" id="Curve_e7lfl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w8kgl"]
+curve = SubResource("Curve_e7lfl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lgkqo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0, 0, 0)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 5.0
+damping_curve = SubResource("CurveTexture_ef7g5")
+scale_curve = SubResource("CurveTexture_w8kgl")
+alpha_curve = SubResource("CurveTexture_ovrae")
+turbulence_enabled = true
+turbulence_noise_strength = 0.2
+turbulence_noise_scale = 0.5
+turbulence_influence_max = 0.3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ovrae"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lcwvc"]
+
+[sub_resource type="Gradient" id="Gradient_ovrae"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lcwvc"]
+gradient = SubResource("Gradient_ovrae")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[node name="GasCloud" type="RigidBody2D" unique_id=149509716 groups=["prey"]]
+gravity_scale = 0.0
+script = ExtResource("1_lgkqo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1869578948]
+amount = 40
+texture = SubResource("GradientTexture2D_ovrae")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_lgkqo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=491426086]
+shape = SubResource("CircleShape2D_ovrae")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=516673998]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1482000739]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_lcwvc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=3127683]
+visible = false
+show_behind_parent = true
+texture = SubResource("GradientTexture2D_lcwvc")

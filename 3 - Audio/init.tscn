@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://h27fglh3jacc"]
+
+[ext_resource type="PackedScene" uid="uid://dsw17t7qcnmw4" path="res://DebugHUD.tscn" id="1_47coo"]
+
+[node name="Init" type="Node2D" unique_id=1515505146]
+
+[node name="DebugHud" parent="." unique_id=803440922 instance=ExtResource("1_47coo")]
